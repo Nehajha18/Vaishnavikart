@@ -32,7 +32,7 @@ function payNow() {
   const quantity = cart.map(item => item.quantity || 1).join(", ");
 
   const options = {
-    key: "rzp_test_lQ9DH5JCxnANLD",
+    key: "rzp_live_5zGcQfdmP7n2fV",
     amount: totalAmount * 100,
     currency: "INR",
     name: "Vaishnavikart",
