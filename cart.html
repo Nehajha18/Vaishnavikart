@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlokMart - Cart</title>
+  <link rel="stylesheet" href="cart.css">
+
+  <!-- Razorpay and  EmailJS -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <!-- Custom JS Files -->
+  <script src="razor.js" defer></script>
+  <script src="email.js" defer></script>
+
+
+</head>
+
+<body>
+
+  <h1> Your Cart Items</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price (₹)</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="cart-items"></tbody>
+  </table>
+
+  <div id="cart-total" style="font-size: 1.5rem; text-align: center;">Total: ₹0</div>
+
+  <div class="form-section">
+    <h2> Order Confirmation by Email</h2>
+    <form id="email-form">
+      <input type="text" name="name" id="username" placeholder="Your Full Name" required />
+      <input type="email" name="user_email" id="email" placeholder="Your Email Address" required />
+      <input type="hidden" name="cart_summary" id="cart-summary" />
+      <br>
+      <button type="button" onclick="payNow()">Pay Now</button>
+    </form>
+  </div>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartTable = document.getElementById('cart-items');
+    let total = 0;
+
+    function renderCart() {
+      cartTable.innerHTML = '';
+      total = 0;
+
+      cartItems.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>₹${item.price.toFixed(2)}</td>
+          <td>${item.quantity || 1}</td>
+          <td><button class="delete-btn" onclick="removeItem(${index})">Delete</button></td>
+        `;
+        total += item.price * (item.quantity || 1);
+        cartTable.appendChild(row);
+      });
+
+      document.getElementById('cart-total').textContent = `Total: ₹${total.toFixed(2)}`;
+
+      const summary = cartItems.map(item =>
+        `${item.name} x ${item.quantity || 1} = ₹${(item.price * (item.quantity || 1)).toFixed(2)}`
+      ).join('\n') + `\nTotal: ₹${total.toFixed(2)}`;
+      document.getElementById("cart-summary").value = summary;
+    }
+
+    function removeItem(index) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+
+</body>
+
+</html>
