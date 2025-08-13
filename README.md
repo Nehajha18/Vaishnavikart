@@ -2,7 +2,7 @@
 
 A responsive shopping website homepage built using **HTML**, **CSS**, and **Bootstrap**. This project is a demo e-commerce landing page featuring best deals, product cards, fashion categories, testimonials, and more.
 
- **Live Preview**: [Click Here to Visit](https://alok7642.github.io/shopping-website/)
+ **Live Preview**: [Click Here to Visit](https://nehajha18.github.io/Vaishnavikart/)
 
 ---
 
@@ -38,8 +38,8 @@ A responsive shopping website homepage built using **HTML**, **CSS**, and **Boot
 
 ##  Developer
 
-**Alok Kumar**  
- [LinkedIn](https://www.linkedin.com/in/alok-kumar-5ab691245)  
- [GitHub Profile](https://github.com/alok7642)
+**Vaishnavi Raj**  
+ [LinkedIn](https://www.linkedin.com/in/vaishnavi-raj-2b91b022b/)  
+ [GitHub Profile](https://github.com/Nehajha18)
 
 
